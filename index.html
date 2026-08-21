@@ -10,10 +10,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #121212; /* 深いダーク背景 */
+            --bg-color: #121212;
             --text-main: #ffffff;
-            --text-sub: #ffb74d; /* 炎や焼肉を連想させるオレンジ色 */
+            --text-sub: #ffb74d; 
             --glow-color: rgba(255, 87, 34, 0.4);
+            --btn-color: #ff5722; /* ボタンのメインカラー */
         }
 
         body {
@@ -70,6 +71,48 @@
             opacity: 0.7;
         }
 
+        /* 追加：説明文のデザイン */
+        .description {
+            font-weight: 400;
+            line-height: 1.8;
+            margin-bottom: 3rem; /* リンクとの間にスペースを作る */
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .description p {
+            margin: 0.8rem 0;
+        }
+
+        /* 修正：ゲームリンクを青文字ではなく、目立つボタンに変更 */
+        .game-link {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffffff !important; /* 青色になるのを強制的に防ぐ */
+            text-decoration: none; /* 下線を消す */
+            background: var(--btn-color);
+            border: 2px solid transparent;
+            border-radius: 50px;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-out 0.9s forwards;
+        }
+
+        .game-link:hover {
+            background: #e64a19;
+            box-shadow: 0 6px 25px var(--glow-color);
+            transform: translateY(-3px) scale(1.02);
+        }
         /* 炎の絵文字を少しだけ揺らすアニメーション */
         .emoji-fire {
             display: inline-block;
@@ -131,7 +174,12 @@
     <div class="container">
         <div class="title"><span class="emoji-fire">🔥</span>焼肉駆動開発<span class="emoji-meat">🍖</span></div>
         <div class="subtitle">鋭意開発中（冬コミ参加予定）</div>
+        <div class="description">
+            <p>私たちは独自のアイデアで新しい面白さを追求するインディーゲーム制作サークルです。</p>
+        </div>
 
+
+        <div class="subtitle">開発中ゲーム</div>
         <!-- 追加したゲームへのリンク -->
         <a href="https://hatano0x06.itch.io/sample" target="_blank" rel="noopener noreferrer" class="game-link">
             拡張将棋（仮）をプレイ
