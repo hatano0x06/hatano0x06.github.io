@@ -8,7 +8,123 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
-    <link href="body" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #121212; /* 深いダーク背景 */
+            --text-main: #ffffff;
+            --text-sub: #ffb74d; /* 炎や焼肉を連想させるオレンジ色 */
+            --glow-color: rgba(255, 87, 34, 0.4);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* 画面中央から広がる炭火のようなグラデーション */
+            background: radial-gradient(circle at center, #2c1b18 0%, var(--bg-color) 70%);
+            color: var(--text-main);
+            font-family: 'Noto Sans JP', sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            padding: 2rem;
+        }
+
+        .title {
+            /* 画面サイズに合わせて文字の大きさを可変（最小2.5rem、最大5rem） */
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            /* 燃えるようなテキストシャドウ */
+            text-shadow: 0 4px 20px var(--glow-color);
+            opacity: 0;
+            transform: translateY(-20px);
+            /* 上からふわっと現れるアニメーション */
+            animation: fadeInDown 1s ease-out forwards;
+            letter-spacing: 0.05em;
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            font-weight: 700;
+            color: var(--text-sub);
+            letter-spacing: 0.15em;
+            opacity: 0;
+            transform: translateY(20px);
+            /* タイトルより少し遅れて現れるアニメーション */
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        /* サブタイトルの前後に装飾 */
+        .subtitle::before, .subtitle::after {
+            content: "ー";
+            margin: 0 10px;
+            opacity: 0.7;
+        }
+
+        /* 炎の絵文字を少しだけ揺らすアニメーション */
+        .emoji-fire {
+            display: inline-block;
+            animation: flicker 2s infinite alternate;
+        }
+
+        .emoji-meat {
+            display: inline-block;
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeInDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes flicker {
+            0% { transform: scale(1) rotate(-2deg); }
+            50% { transform: scale(1.1) rotate(2deg); filter: drop-shadow(0 0 10px #ff9800); }
+            100% { transform: scale(1) rotate(-1deg); }
+        }
+
+        /* 控えめな火の粉の背景装飾 */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            background-image: 
+                radial-gradient(#ff5722 1px, transparent 1px),
+                radial-gradient(#ff9800 1px, transparent 1px);
+            background-size: 50px 50px, 100px 100px;
+            background-position: 0 0, 25px 25px;
+            opacity: 0.08;
+            animation: moveParticles 20s linear infinite;
+        }
+
+        @keyframes moveParticles {
+            from { background-position: 0 0, 25px 25px; }
+            to { background-position: 50px -50px, 125px -75px; }
+        }
+    </style>
+
 </head>
 <body>
     <div class="particles"></div>
